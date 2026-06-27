@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>For My Love — Happy Birthday</title>
+  <meta name="description" content="A romantic countdown to a very special birthday." />
+
+  <!-- Fonts: Playfair Display (elegant serif headings), Great Vibes (cursive accent), Outfit (clean modern body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- CONFIGURATION NOTICE (visible in HTML source) -->
+  <!-- Set the birthday date/time inside script.js   -->
+  <!-- near the top, in the CONFIG object.            -->
+  <!-- ============================================ -->
+
+  <!-- Heart-shaped custom cursor follower (desktop only, see script.js) -->
+  <div class="cursor-heart" id="cursorHeart" aria-hidden="true">❤</div>
+
+  <!-- Ambient floating hearts layer, sits behind all content -->
+  <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+
+  <!-- Ambient sparkle layer -->
+  <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+
+  <!-- ============== TOP CONTROLS ============== -->
+  <div class="top-controls">
+    <button class="control-btn" id="musicToggle" aria-label="Play romantic music" aria-pressed="false">
+      <span class="control-icon music-icon">🎵</span>
+      <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+
+  <audio id="bgMusic" loop preload="none">
+    <!-- Replace src with your chosen romantic track -->
+    <source src="/RBW/romantic-music.mp3" />
+  </audio>
+
+  <!-- ============== LANDING / COUNTDOWN SECTION ============== -->
+  <main id="countdownSection" class="section countdown-section">
+    <div class="bg-blobs" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+
+    <div class="countdown-wrap">
+      <p class="eyebrow">a little secret is counting down</p>
+      <h1 class="hero-title">
+        For You, <span class="script-accent">My Love</span>
+      </h1>
+      <p class="hero-sub">Something sweet is waiting on the other side of this clock.</p>
+
+      <!-- The "kept-promise locket" countdown card — signature element -->
+      <div class="locket-card" id="locketCard">
+        <span class="locket-seal" aria-hidden="true">❤</span>
+
+        <div class="flip-grid" id="flipGrid">
+          <!-- Each unit: flip-style digit pair -->
+          <div class="flip-unit">
+            <div class="flip-digits" data-unit="days">
+              <span class="flip-tile" data-d1>00</span>
+              <span class="flip-tile" data-d2>00</span>
+            </div>
+            <span class="flip-label">Days</span>
+          </div>
+          <div class="flip-sep" aria-hidden="true">:</div>
+          <div class="flip-unit">
+            <div class="flip-digits" data-unit="hours">
+              <span class="flip-tile" data-d1>00</span>
+              <span class="flip-tile" data-d2>00</span>
+            </div>
+            <span class="flip-label">Hours</span>
+          </div>
+          <div class="flip-sep" aria-hidden="true">:</div>
+          <div class="flip-unit">
+            <div class="flip-digits" data-unit="minutes">
+              <span class="flip-tile" data-d1>00</span>
+              <span class="flip-tile" data-d2>00</span>
+            </div>
+            <span class="flip-label">Minutes</span>
+          </div>
+          <div class="flip-sep" aria-hidden="true">:</div>
+          <div class="flip-unit">
+            <div class="flip-digits" data-unit="seconds">
+              <span class="flip-tile" data-d1>00</span>
+              <span class="flip-tile" data-d2>00</span>
+            </div>
+            <span class="flip-label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="locket-footnote" id="countdownDate">Until your special day</p>
+      </div>
+
+      <button class="glow-btn enable-notify-btn" id="notifyBtn">
+        <span>🔔 Notify me at midnight</span>
+      </button>
+
+      <a href="#gallery" class="scroll-hint" aria-label="Scroll down to explore">
+        <span class="scroll-hint-line"></span>
+        scroll to look around
+      </a>
+    </div>
+  </main>
+
+  <!-- ============== BIRTHDAY REVEAL (hidden until trigger time) ============== -->
+  <section id="birthdaySection" class="section birthday-section" hidden>
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <div class="balloon-layer" id="balloonLayer" aria-hidden="true"></div>
+
+    <div class="birthday-content">
+      <p class="eyebrow eyebrow-gold">it's finally here</p>
+      <h2 class="birthday-title">Happy Birthday,<br><span class="script-accent gold">My Love!</span> ❤️</h2>
+      <p class="birthday-message">
+        Today is your special day, and I hope your life is filled with happiness, love, success,
+        and endless smiles. Thank you for being the most beautiful part of my life. I wish you a
+        birthday as wonderful as you are. I love you forever. Happy Birthday! 🎂💕
+      </p>
+      <button class="glow-btn gold-btn" id="scrollToLetterBtn">Open my letter to you ❤️</button>
+    </div>
+  </section>
+
+  <!-- ============== GALLERY SECTION ============== -->
+  <section id="gallery" class="section gallery-section">
+    <p class="eyebrow">moments i keep close</p>
+    <h2 class="section-title">Our Little <span class="script-accent">Gallery</span></h2>
+    <p class="section-sub">Replace these frames with your own favorite photos — see comments in the HTML.</p>
+
+    <!--
+      HOW TO ADD YOUR OWN PHOTOS:
+      Replace each src="images/placeholder-X.jpg" below with the path to your photo.
+      Put your image files inside the /images folder and match the filename,
+      or update the src attribute to point to your own file name.
+      Feel free to duplicate a .gallery-frame block to add more photos.
+    -->
+    <div class="gallery-grid">
+      <figure class="gallery-frame frame-tilt-left">
+        <img src="/RBW/images/img1.jpg" alt="You're Prettiness" loading="lazy" />
+      </figure>
+      <figure class="gallery-frame">
+        <img src="/RBW/images/img2.jpg" alt="You're Prettiness" loading="lazy" />
+      </figure>
+      <figure class="gallery-frame frame-tilt-right">
+        <img src="/RBW/images/img3.jpg" alt="You're Prettiness" loading="lazy" />
+      </figure>
+      <figure class="gallery-frame frame-tilt-right">
+        <img src="/RBW/images/img4.jpg" alt="You're Prettiness" loading="lazy" />
+      </figure>
+      <figure class="gallery-frame">
+        <img src="/RBW/images/img5.jpg  " alt="You're Prettiness" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== LOVE LETTER SECTION ============== -->
+  <section id="letter" class="section letter-section">
+    <div class="letter-teaser">
+      <p class="eyebrow">one more thing</p>
+      <h2 class="section-title">A Letter, <span class="script-accent">Just for You</span></h2>
+      <p class="section-sub">Some things are easier to say in writing.</p>
+      <button class="glow-btn" id="openLetterBtn">
+        <span>Open My Letter ❤️</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Love Letter Modal -->
+  <div class="letter-modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterModalTitle" hidden>
+    <div class="letter-modal-backdrop" id="letterBackdrop"></div>
+    <div class="letter-paper">
+      <button class="letter-close" id="letterCloseBtn" aria-label="Close letter">✕</button>
+      <span class="letter-seal" aria-hidden="true">❤</span>
+      <h3 id="letterModalTitle" class="letter-heading">My Darling,</h3>
+      <!-- Typing animation target -->
+      <p class="letter-typed" id="letterTypedText"></p>
+      <p class="letter-signoff" id="letterSignoff">— Yours, always &amp; completely</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>made with <span aria-hidden="true">❤</span> for the one who has all of my heart</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
